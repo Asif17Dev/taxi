@@ -9,7 +9,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose =require('passport-local-mongoose');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
