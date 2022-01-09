@@ -1,0 +1,19 @@
+<%- include("header") -%>
+
+    <section id="contentpage">
+    <div class="search-head">
+      <h2><%=user.username%> Riding Info</h2>
+    </div>
+ <div class="content">
+   <P>Pickup: <%=user.from%></P>
+  <P>Destination: <%=user.destination%></P>
+  <P>Pickup Time: <%=user.Time%></P>
+  <form class="" action="/driverSubmit/<%=user._id%>" method="post">
+  <input type="text" name="price" placeholder="Enter price of ride">
+  <button type="submit" name="button">Submit</button>
+  </form>
+
+</div>
+</section>
+
+<%- include("footer") -%>

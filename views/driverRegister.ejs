@@ -1,0 +1,15 @@
+<%- include("header") -%>
+
+    <section id="userSignin">
+     <h1>Driver Register</h1>
+     <form class="" action="/driverRegister" method="post">
+
+     <input type="text" name="username" value="" placeholder="Enter your name" required>
+     <input type="password" name="password" value="" placeholder="Enter your password" required>
+     <button type="submit" name="driversubmit">SignUp</button>
+     <p>Already have an driver's account :<a href="/driverLogin"> signin</a></p>
+     <p>Are you an user : <a href="/userLogin">signin</a> / <a href="/userRegister">signup</a></p>
+     </form>
+   </section>
+
+<%- include("footer") -%>

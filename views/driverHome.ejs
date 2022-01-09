@@ -1,0 +1,17 @@
+<%- include("header") -%>
+
+    <section id="driverHome">
+      <a style="background:#fff; padding:10px 10px; border-radius:10px;"
+       href="/logout" role="button">logout</a>
+    <div class="search-head">
+      <h2>Looking For Customer?  <i class="fas fa-search"></i></h2>
+    </div>
+ <div class="dropdown-content">
+   <% usersWithDesti.forEach(function(user){ %>
+    <a href="content/<%=user._id%>">from : <%= user.from %> destination : <%= user.destination %></a>
+   <%   }) %>
+
+</div>
+</section>
+
+<%- include("footer") -%>

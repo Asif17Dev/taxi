@@ -1,0 +1,41 @@
+<%- include("header") -%>
+
+<section id="userHome">
+
+  <div class="home-input">
+    <h1>Hello</h1>
+    <form action="/book" method="post">
+      <input type="text" name="from" value="" placeholder="From">
+      <input type="text" name="destination" value="" placeholder="Destination">
+      <input type="text" name="rideTime" value="" placeholder="Set Time">
+      <button type="submit" name="button">Book Now</button>
+    </form>
+    <a href="/logout" role="button">logout</a>
+  </div>
+  <div class="upcoming-ride">
+  <h2>Upcoming Ride</h2>
+
+
+<% if(location.length > 0){%>
+  <div class="ride">
+    <p>Location:<%= location%></p>
+    <p>Time:<%= time%></p>
+    <p>Price:<%= price%> </p>
+    <P>Status:<%= status%></P>
+    <form class="" action="/pay/<%= id%>" method="post">
+      <button type="submit" name="button">pay your ride</button>
+    </form>
+    <form class="" action="/finish/<%= id%>" method="post">
+      <button type="submit" name="button">finish</button>
+    </form>
+
+<%   %>
+ </div>
+<% } %>
+
+  </div>
+
+</section>
+
+
+<%- include("footer") -%>

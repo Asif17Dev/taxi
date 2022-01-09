@@ -1,0 +1,170 @@
+:root{
+  --yellow: #ffd60a;
+  --black: #212529;
+  --white: #f8f9fa;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+#userHome{
+  display: flex;
+  position:relative;
+  justify-content: space-around;
+}
+
+#userSignin, #userSignup{
+  background: var(--black);
+  background-position: bottom;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+a{
+  text-decoration: none;
+}
+h1{
+  font-size: 3em;
+  color: var(--yellow);
+}
+form{
+  padding: 2% 0;
+  align-items: center;
+}
+input{
+  display: block;
+  outline: none;
+  width: 400px;
+  height: 50px;
+  border: 1px solid var(--yellow);
+  background: transparent;
+  margin: 20px auto;
+  color: var(--yellow);
+  padding-left: 10px;
+  letter-spacing: 2px;
+  font-size: 0.8em;
+}
+input::placeholder{
+  color: var(--yellow);
+  padding-left: 10px;
+  letter-spacing: 2px;
+  font-size: 0.8em;
+}
+form button{
+  outline: none;
+  padding: 10px 30px;
+  background: var(--yellow);
+  color: var(--black)
+  border: transparent;
+  font-size: 1.2em;
+  letter-spacing: 3px;
+  font-weight: 600;
+  border-radius: 100px;
+}
+form p{
+  color: var(--white);
+  font-size: 0.8em;
+  display:block;
+  margin: 10px auto;
+}
+form p a{
+transition: 0.2s;
+  color: var(--white);
+}
+form p a:hover{
+  color: var(--yellow);
+}
+#userHome{
+  text-align:center;
+  background: var(--black);
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  flex-basis: 50%;
+}
+.home-input{
+padding-top: 50px;
+}
+.home-input a{
+  background: var(--white);
+  color: var(--black);
+  padding: 10px 20px;
+  margin: 50px;
+  border-radius: 100px;
+}
+.upcoming-ride{
+background: var(--white);
+color: var(--black);
+width: 100%;
+height: 100%;
+flex-basis: 50%;
+padding: 100px 150px;
+}
+.upcoming-ride h2{
+  margin-top: -50px;
+  color: var(--black);
+}
+.ride{
+  background: var(--black);
+  color: var(--yellow);
+  margin: 30px;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: left;
+}
+.ride button{
+color: var(--black);
+padding: 5px 10px;
+border-radius: 100px;
+background: var(--white);
+}
+#driverHome {
+  text-align: center;
+  background: var(--yellow);
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.search-head{
+background: var(--black);
+color: var(--yellow);
+width: 400px;
+height: 50px;
+margin: auto;
+margin-top: 50px;
+display: block;
+padding: 10px 15px;
+cursor: pointer;
+}
+.dropdown-content{
+
+width: 400px;
+height:auto;
+margin: auto;
+display: none;
+}
+.dropBlock{
+  display: block;
+}
+.dropdown-content a{
+  display: block;
+  background: var(--white);
+  margin: 20px 0;
+  font-size: 1em;
+  padding: 10px 0;
+  color: var(--black);
+  font-weight: bold;
+}
+#contentpage{
+width: 100%;
+min-height: 100vh;
+background: var(--yellow);
+text-align: center;
+}
