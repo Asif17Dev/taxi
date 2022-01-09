@@ -9,6 +9,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose =require('passport-local-mongoose');
 
+const port = process.env.PORT || 3000;
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -22,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://asif-admin:asif0017@cluster0.dahvj.mongodb.net/UserDB",{useNewUrlParser: true   });
+mongoose.connect("mongodb+srv://asif-admin:asif0017@cluster0.ngoge.mongodb.net/UserDB",{useNewUrlParser: true   });
 
 const userSchema = new mongoose.Schema({
   username:String,
@@ -256,4 +258,10 @@ User.findById(id,(err,foundUser)=>{
 });
 });
 
-app.listen(3000);
+app.listen(port,(err)=>{
+  if(!err){
+    console.log("server started");
+  }else{
+    console.log(err);
+  }
+});
