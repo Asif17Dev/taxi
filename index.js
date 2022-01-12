@@ -4,10 +4,10 @@ const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const app = express();
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose =require('passport-local-mongoose');
+const app = express();
 
 const port = process.env.PORT || 5000;
 
@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.use(session({
-  secret: 'Our little secret.',
+  secret: 'Session secret',
   resave: false,
   saveUninitialized: false
 }));
@@ -24,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://asif-admin:asif0017@cluster0.ngoge.mongodb.net/UserDB",{useNewUrlParser: true   });
+mongoose.connect("mongodb://localhost:27017/userDB",{useNewUrlParser:true});
 
 const userSchema = new mongoose.Schema({
   username:String,
@@ -80,21 +80,21 @@ app.get("/logout",function(req,res){
   res.redirect("/");
 });
 
-app.get("/driverHome",function(req,res){
+app.get("/driverDash",function(req,res){
   User.find({"destination":{$ne:null}},function(err,foundUsers){
     if(err){
       console.log(err);
     }else{
       if(foundUsers){
-        res.render("driverHome",{usersWithDesti: foundUsers});
+        res.render("driverDash",{usersWithDesti: foundUsers});
       }
     }
   });
 });
 
-app.get("/userHome",function(req,res){
+app.get("/userDash",function(req,res){
   if(req.isAuthenticated()){
-    res.render("userHome",{location: req.user.destination,
+    res.render("userDash",{location: req.user.destination,
       time: req.user.Time,
        status : req.user.Status,
      price: req.user.Price,
@@ -106,12 +106,10 @@ app.get("/userHome",function(req,res){
 
 app.post("/userRegister",function(req,res){
 
-  const user = new User({
+ const user = new User({
     username:req.body.username,
     from:"",
     destination:"",
-    Time:"",
-    Status:"",
   });
 
 User.register(user,req.body.password,function(err){
@@ -120,7 +118,7 @@ User.register(user,req.body.password,function(err){
     res.redirect("/userRegister");
   }else{
     passport.authenticate("local")(req,res, function(){
-    res.redirect("/userHome");
+    res.redirect("/userDash");
   });
 }
 });
@@ -136,7 +134,7 @@ req.login(user,function(err){
     console.log(err);
   }else{
     passport.authenticate("local")(req,res, function(){
-      res.redirect("/userHome");
+      res.redirect("/userDash");
     });
   }
 });
@@ -149,7 +147,7 @@ User.register({username:req.body.username},req.body.password,function(err){
     res.redirect("/driverRegister");
   }else{
     passport.authenticate("local")(req,res, function(){
-    res.redirect("/driverHome");
+    res.redirect("/driverDash");
   });
 }
 });
@@ -165,7 +163,7 @@ req.login(user,function(err){
     console.log(err);
   }else{
     passport.authenticate("local")(req,res, function(){
-      res.redirect("/driverHome");
+      res.redirect("/driverDash");
     });
   }
 });
@@ -191,7 +189,7 @@ User.findById(id,(err,foundUser)=>{
       foundUser.Status = "on process";
       foundUser.save(function(err){
         if(!err){
-          res.redirect("/userHome");
+          res.redirect("/userDash");
         }
       });
     }
@@ -204,12 +202,12 @@ const id = req.params.id;
 User.findById(id,(err,user)=>{
   if(!err){
     user.Price = req.body.price;
-    user.driverName = req.user.name;
+    user.driverName = req.user.username;
     user.Status = "Ride Confirmed";
     user.Paid  = "not";
     user.save((err)=>{
       if(!err){
-        res.redirect("/driverHome");
+        res.redirect("/driverDash");
       }
     });
   }else{
@@ -226,7 +224,7 @@ app.post("/pay/:id",(req,res)=>{
       user.Paid  = "payed";
       user.save((err)=>{
         if(!err){
-          res.redirect("/userHome");
+          res.redirect("/userDash");
         }
       });
     }else{
@@ -236,7 +234,9 @@ app.post("/pay/:id",(req,res)=>{
 });
 
 app.post("/finish/:id",(req,res)=>{
+
 const id = req.user.id;
+
 User.findById(id,(err,foundUser)=>{
   if(err){
     console.log(err);
@@ -250,7 +250,7 @@ User.findById(id,(err,foundUser)=>{
       foundUser.Price = "";
       foundUser.save(function(err){
         if(!err){
-          res.redirect("/userHome");
+          res.redirect("/userDash");
         }
       });
     }
